@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Anna</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #fdf8f5; --text: #2d2a26; --accent: #e07a5f; --muted: #8b8178; --card: #ffffff; }
+    body { font-family: 'Nunito', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    .blob { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.4; z-index: 0; animation: float 20s ease-in-out infinite; }
+    .blob-1 { width: 500px; height: 500px; background: #f4d35e; top: -100px; right: -100px; animation-delay: 0s; }
+    .blob-2 { width: 400px; height: 400px; background: #81b29a; bottom: -50px; left: -100px; animation-delay: -5s; }
+    .blob-3 { width: 300px; height: 300px; background: #e07a5f; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -10s; }
+    @keyframes float { 0%,100%{transform:translate(0,0)scale(1)} 25%{transform:translate(30px,-30px)scale(1.05)} 50%{transform:translate(-20px,20px)scale(0.95)} 75%{transform:translate(20px,30px)scale(1.02)} }
+    nav { position: fixed; top: 0; left: 0; right: 0; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(253,248,245,0.8); backdrop-filter: blur(10px); }
+    .logo { display: flex; align-items: center; gap: 0.5rem; }
+    .logo-mark { width: 40px; height: 40px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; padding: 6rem 3rem 3rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero h1 { font-size: clamp(3rem, 8vw, 5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
+    .hero p { font-size: 1.25rem; color: var(--muted); max-width: 600px; }
+    .section { padding: 4rem 3rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; color: var(--muted); margin-bottom: 3rem; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+    .blog-card { background: var(--card); padding: 2.5rem; border-radius: 24px; transition: all 0.3s ease; cursor: pointer; }
+    .blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .blog-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+    .blog-card h3 { font-size: 1.5rem; margin: 0.8rem 0; font-weight: 700; }
+    .blog-card p { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; }
+    .blog-link { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+    .blog-link:hover { color: var(--text); }
+    footer { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.9rem; position: relative; z-index: 1; }
+    @media (max-width: 768px) { nav, .hero, .section { padding-left: 1.5rem; padding-right: 1.5rem; } .blob { opacity: 0.2; } }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+  <nav>
+    <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:0.5rem;"><svg class="logo-mark" viewBox="0 0 50 50" fill="none"><circle cx="25" cy="25" r="24" stroke="#2d2a26" stroke-width="2"/><path d="M25 8C25 8 15 18 15 28C15 33 19 38 25 38C31 38 35 33 35 28C35 18 25 8 25 8Z" fill="#2d2a26"/><path d="M25 8V22M25 22L18 16M25 22L32 16" stroke="#fdf8f5" stroke-width="2" stroke-linecap="round"/></svg></a></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="services.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <section class="hero"><h1>Thoughts.</h1><p>Design insights, tips, and things I've learned along the way.</p></section>
+  <section class="section"><h2 class="section-title">All Articles</h2><div class="blog-grid">
+      <article class="blog-card"><span class="blog-date">Jan 15, 2026</span><h3>The Art of Minimal Branding</h3><p>Why less is often more when it comes to visual identity. Exploring the power of restraint in modern design...</p><a href="#" class="blog-link">Read more →</a></article>
+      <article class="blog-card"><span class="blog-date">Dec 28, 2025</span><h3>Color Psychology in Design</h3><p>How colors influence perception and decision making. A deep dive into the emotional impact of hue...</p><a href="#" class="blog-link">Read more →</a></article>
+      <article class="blog-card"><span class="blog-date">Dec 10, 2025</span><h3>Typography That Works</h3><p>Choosing the right fonts for better readability and impact. Typeface selection made simple...</p><a href="#" class="blog-link">Read more →</a></article>
+      <article class="blog-card"><span class="blog-date">Nov 22, 2025</span><h3>Designing for Accessibility</h3><p>Creating inclusive experiences for everyone. Why accessibility should be a design fundamental...</p><a href="#" class="blog-link">Read more →</a></article>
+      <article class="blog-card"><span class="blog-date">Nov 5, 2025</span><h3>The Magic of White Space</h3><p>Empty space is never wasted space. How breathing room elevates your designs...</p><a href="#" class="blog-link">Read more →</a></article>
+      <article class="blog-card"><span class="blog-date">Oct 18, 2025</span><h3>Building a Design System</h3><p>From chaos to consistency. Steps to create a scalable design system for your brand...</p><a href="#" class="blog-link">Read more →</a></article>
+    </div></section>
+  <footer><p>© 2026 Anna. All rights reserved.</p></footer>
+</body>
+</html>

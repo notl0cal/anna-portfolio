@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anna — Graphic Designer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #fdf8f5; --text: #2d2a26; --accent: #e07a5f; --muted: #8b8178; --card: #ffffff; }
+    body { font-family: 'Nunito', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    .blob { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.4; z-index: 0; animation: float 20s ease-in-out infinite; }
+    .blob-1 { width: 500px; height: 500px; background: #f4d35e; top: -100px; right: -100px; animation-delay: 0s; }
+    .blob-2 { width: 400px; height: 400px; background: #81b29a; bottom: -50px; left: -100px; animation-delay: -5s; }
+    .blob-3 { width: 300px; height: 300px; background: #e07a5f; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -10s; }
+    @keyframes float { 0%,100%{transform:translate(0,0)scale(1)} 25%{transform:translate(30px,-30px)scale(1.05)} 50%{transform:translate(-20px,20px)scale(0.95)} 75%{transform:translate(20px,30px)scale(1.02)} }
+    nav { position: fixed; top: 0; left: 0; right: 0; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(253,248,245,0.8); backdrop-filter: blur(10px); }
+    .logo { display: flex; align-items: center; gap: 0.5rem; }
+    .logo-mark { width: 40px; height: 40px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 3rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow { color: var(--accent); font-weight: 600; font-size: 1rem; letter-spacing: 1px; margin-bottom: 1rem; }
+    .hero h1 { font-size: clamp(3rem, 9vw, 6rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; }
+    .hero p { font-size: 1.25rem; color: var(--muted); max-width: 480px; }
+    .section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
+    .section-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; color: var(--muted); }
+    .view-all { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .view-all:hover { color: var(--text); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .project-card { background: var(--card); border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); cursor: pointer; }
+    .project-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+    .project-image { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; transition: transform 0.4s ease; }
+    .project-card:hover .project-image { transform: scale(1.05); }
+    .project-info { padding: 1.5rem; }
+    .project-info h3 { font-size: 1.2rem; margin-bottom: 0.3rem; font-weight: 700; }
+    .project-info p { color: var(--muted); font-size: 0.9rem; }
+    .about { padding: 8rem 3rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; }
+    .about-text p { color: var(--muted); font-size: 1.1rem; margin-bottom: 1rem; }
+    .about-image { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #ffd6a5 0%, #fdffb6 100%); border-radius: 40px; position: relative; }
+    .about-image::before { content: ''; position: absolute; inset: -20px; border: 3px solid var(--accent); border-radius: 50px; opacity: 0.3; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .blog-card { background: var(--card); padding: 2rem; border-radius: 20px; transition: all 0.3s ease; cursor: pointer; }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+    .blog-date { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .blog-card h3 { font-size: 1.2rem; margin: 0.5rem 0; font-weight: 700; }
+    .blog-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+    .blog-link { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.85rem; }
+    .blog-link:hover { color: var(--text); }
+    .contact { text-align: center; padding: 8rem 3rem; position: relative; z-index: 1; }
+    .contact h2 { font-size: clamp(2rem, 6vw, 4rem); font-weight: 700; margin-bottom: 1rem; }
+    .contact p { color: var(--muted); font-size: 1.15rem; margin-bottom: 2.5rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link { padding: 1rem 2rem; background: var(--text); color: var(--bg); text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
+    .contact-link:hover { background: var(--accent); transform: translateY(-3px); }
+    footer { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.9rem; position: relative; z-index: 1; }
+    @media (max-width: 768px) { nav, .hero, .section, .about, .contact { padding-left: 1.5rem; padding-right: 1.5rem; } .about-content { grid-template-columns: 1fr; } .blob { opacity: 0.2; } }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+  <nav>
+    <div class="logo"><svg class="logo-mark" viewBox="0 0 50 50" fill="none"><circle cx="25" cy="25" r="24" stroke="#2d2a26" stroke-width="2"/><path d="M25 8C25 8 15 18 15 28C15 33 19 38 25 38C31 38 35 33 35 28C35 18 25 8 25 8Z" fill="#2d2a26"/><path d="M25 8V22M25 22L18 16M25 22L32 16" stroke="#fdf8f5" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Work</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="services.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <section class="hero"><p class="hero-eyebrow">Graphic Designer</p><h1>Hello.</h1><p>I create warm, thoughtful visual experiences. Design that feels like coming home.</p></section>
+  <section id="work" class="section"><div class="section-header"><h2 class="section-title">Selected Work</h2></div><div class="projects-grid">
+      <div class="project-card"><div class="project-image">✦</div><div class="project-info"><h3>Brand Identity</h3><p>Complete visual identity for a modern startup</p></div></div>
+      <div class="project-card"><div class="project-image">✧</div><div class="project-info"><h3>App Interface</h3><p>UI design for a health & wellness platform</p></div></div>
+      <div class="project-card"><div class="project-image">◇</div><div class="project-info"><h3>Editorial Design</h3><p>Magazine layout and typography</p></div></div>
+      <div class="project-card"><div class="project-image">◈</div><div class="project-info"><h3>Packaging</h3><p>Product packaging for a lifestyle brand</p></div></div>
+    </div></section>
+  <section id="about" class="about"><div class="about-content"><div class="about-text"><h2>Design with heart and intention.</h2><p>I'm Anna, a graphic designer who believes good design should feel effortless. I focus on creating visual systems that resonate with people.</p><p>When I'm not designing, you'll find me tending plants, sketching, or finding inspiration in everyday moments.</p></div><div class="about-image"></div></div></section>
+  <section id="blog" class="section"><div class="section-header"><h2 class="section-title">Recent Thoughts</h2><a href="blog.html" class="view-all">View all →</a></div><div class="blog-grid">
+      <article class="blog-card"><span class="blog-date">Jan 15, 2026</span><h3>The Art of Minimal Branding</h3><p>Why less is often more when it comes to visual identity...</p><a href="blog.html" class="blog-link">Read more →</a></article>
+      <article class="blog-card"><span class="blog-date">Dec 28, 2025</span><h3>Color Psychology in Design</h3><p>How colors influence perception and decision making...</p><a href="blog.html" class="blog-link">Read more →</a></article>
+      <article class="blog-card"><span class="blog-date">Dec 10, 2025</span><h3>Typography That Works</h3><p>Choosing the right fonts for better readability...</p><a href="blog.html" class="blog-link">Read more →</a></article>
+    </div></section>
+  <section id="contact" class="contact"><h2>Let's create something beautiful.</h2><p>Have a project in mind? I'd love to collaborate.</p><div class="contact-links"><a href="mailto:hello@anna.design" class="contact-link">Email Me</a><a href="#" class="contact-link">Instagram</a><a href="#" class="contact-link">Dribbble</a><a href="#" class="contact-link">Behance</a></div></section>
+  <footer><p>© 2026 Anna. All rights reserved.</p></footer>
+  <script>document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'}); }); });</script>
+</body>
+</html>
