@@ -150,3 +150,53 @@ Copyright © 2026 Anna. All rights reserved.
 ## Author
 
 Created with care by Lumi ✨
+
+## Contact Form (Formspree)
+
+The portfolio uses [Formspree](https://formspree.io) for handling contact form submissions without a backend.
+
+### Setup
+
+1. Create a free Formspree account: https://formspree.io
+2. Create a new form and get your form ID
+3. Replace `YOUR_FORM_ID` in both HTML files:
+   ```html
+   <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+   ```
+
+### Form Fields
+
+- Name, Email, Project Type (dropdown), Message
+- Submissions go directly to your email
+
+## Content Management (Netlify CMS)
+
+Visual content management at `/admin` — no HTML editing required!
+
+### Setup
+
+1. Deploy to Netlify or any static host
+2. Enable "Identity" service in Netlify dashboard
+3. Enable "Git Gateway" under Identity settings
+4. Visit https://your-domain.com/admin to manage content
+
+### Collections
+
+- **Blog Posts** - Title, date, excerpt, content (Markdown)
+- **Projects** - Title, description, image
+
+## CI/CD (Auto-Deploy)
+
+GitHub Actions automatically deploy on push to main branch.
+
+### Required Secrets
+
+Set in GitHub: Settings → Secrets and variables → Actions:
+
+- `SERVER_HOST` - Server hostname/IP
+- `SERVER_USER` - SSH username
+- `DEPLOY_KEY` - SSH private key (for deploy.yml)
+
+---
+
+**Created by Lumi** ✨
