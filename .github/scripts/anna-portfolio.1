@@ -1,0 +1,119 @@
+.\" Man page for Anna Portfolio deployment scripts
+.\"
+.TH ANNA-PORTFOLIO 1 "February 2026" "Anna Portfolio" "Deployment Manual"
+.SH NAME
+anna-portfolio \- Anna's portfolio website deployment tools
+.SH SYNOPSIS
+.B system-hardening.sh
+[\fIhostname\fR]
+
+.B deploy.sh
+\fIcommand\fR [\fIserver\fR] [\fIenvironment\fR]
+.SH DESCRIPTION
+Anna Portfolio is a static website deployment system. It includes scripts for
+server hardening and automated deployment.
+.SH SYSTEM HARDENING SCRIPT
+.PP
+\fBsystem-hardening.sh\fR secures a fresh Linux server for web hosting.
+.PP
+\fBUsage:\fR
+.IP
+sudo ./system-hardening.sh [\fIhostname\fR]
+.PP
+\fBOptions:\fR
+.IP \fIhostname\fR
+Set the server hostname (default: anna-portfolio)
+.PP
+\fBActions performed:\fR
+.IP \(bu 2
+Update system packages
+.IP \(bu 2
+Create 'deploy' user with sudo privileges
+.IP \(bu 2
+Configure SSH key-only authentication
+.IP \(bu 2
+Set up UFW firewall (SSH, HTTP, HTTPS)
+.IP \(bu 2
+Install and configure Fail2Ban
+.IP \(bu 2
+Enable automatic security updates
+.IP \(bu 2
+Harden kernel parameters
+.PP
+\fBNote:\fR Must be run as root or with sudo.
+.SH DEPLOYMENT SCRIPT
+.PP
+\fBdeploy.sh\fR automates deployment of the portfolio to a production server.
+.PP
+\fBUsage:\fR
+.IP
+./deploy.sh \fIcommand\fR [\fIserver\fR] [\fIenvironment\fR]
+.PP
+\fBCommands:\fR
+.IP \fBdeploy\fR
+Full deployment workflow (default)
+.IP \fBstart\fR
+Start the web service
+.IP \fBstop\fR
+Stop the web service
+.IP \fBrestart\fR
+Restart the web service
+.IP \fBstatus\fR
+Show deployment status and recent commits
+.IP \fBrollback\fR
+Revert to previous version
+.IP \fBverify\fR
+Verify deployment is responding
+.IP \fBhelp\fR
+Show usage information
+.PP
+\fBOptions:\fR
+.IP \fIserver\fR
+Domain name or IP address (default: localhost)
+.IP \fIenvironment\fR
+Deployment environment (default: dev)
+.PP
+\fBExamples:\fR
+.IP
+Deploy to production:
+.B
+.br
+./deploy.sh deploy anna-portfolio.com prod
+.PP
+.IP
+Check deployment status:
+.B
+.br
+./deploy.sh status
+.PP
+.IP
+Rollback to previous version:
+.B
+.br
+./deploy.sh rollback
+.SH ENVIRONMENT
+.TP
+.B PORT
+Port for web service (default: 8000)
+.TP
+.B REPO_URL
+GitHub repository URL (default: https://github.com/notl0cal/anna-portfolio.git)
+.SH FILES
+.TP
+.I /var/www/anna-portfolio
+Default deployment directory
+.TP
+.I /etc/systemd/system/anna-portfolio.service
+Systemd service unit file
+.TP
+.I /etc/caddy/Caddyfile
+Caddy reverse proxy configuration
+.SH SEE ALSO
+.BR caddy (1),
+.BR systemctl (1),
+.BR ufw (8),
+.BR fail2ban (1)
+.SH AUTHOR
+Created by Lumi ✨
+.SH COPYRIGHT
+Copyright © 2026 Anna. All rights reserved.
